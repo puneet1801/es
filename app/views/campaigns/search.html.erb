@@ -1,0 +1,14 @@
+
+<%= form_for search_campaigns_path, method: :get do |f| %>
+  <p>
+    <%= f.label :campaign_name %>
+    <%= text_field_tag :campaign_name %>
+    <%= f.label :campaign_type %>
+    <%= select_tag :campaign_type, options_for_select(Campaign::CampaignType) %>
+    <%= f.label :list_name %>
+    <%= text_field_tag :list_name %>
+    <%= f.label :list_type %>
+    <%= select_tag :list_type, options_for_select(List::ListType) %>
+    <%= submit_tag "Submit" %>
+  </p>
+<% end %>
