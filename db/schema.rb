@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901085706) do
+ActiveRecord::Schema.define(version: 20170911065656) do
 
   create_table "campaigns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -19,13 +19,24 @@ ActiveRecord::Schema.define(version: 20170901085706) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-    t.string "email"
-    t.text "address"
-    t.string "city"
-    t.string "domain"
-    t.integer "list_id"
+  create_table "contacts", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "id", default: 0, null: false
+    t.string "email", null: false, collation: "utf8_unicode_ci"
+    t.string "first_name", collation: "utf8_unicode_ci"
+    t.string "last_name", collation: "utf8_unicode_ci"
+    t.string "phone", collation: "utf8_unicode_ci"
+    t.string "fax", collation: "utf8_unicode_ci"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "domain_name"
+  end
+
+  create_table "list_subscriptions", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "id", default: 0, null: false
+    t.integer "list_id", null: false
+    t.integer "contact_id", null: false
+    t.boolean "active", default: true
+    t.integer "status", limit: 2, default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

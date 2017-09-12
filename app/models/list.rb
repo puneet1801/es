@@ -2,7 +2,9 @@ class List < ApplicationRecord
 	# include Searchable
 
 	belongs_to :campaign
-	has_many :contacts
+
+	has_many :list_subscriptions
+	has_many :contacts, through: :list_subscriptions	
 
 	after_commit :refresh_campaign_index
 

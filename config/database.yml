@@ -11,6 +11,7 @@ default: &default
   username: root
   password: root
   database: es
+  reconnect: true
 
 development:
   <<: *default
